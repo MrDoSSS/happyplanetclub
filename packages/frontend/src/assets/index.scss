@@ -1,0 +1,38 @@
+@import 'font';
+@import 'bootstrap/scss/bootstrap';
+@import 'buttons';
+@import 'headings';
+@import 'navbar';
+
+:root {
+  --bs-body-font-size: 1.6rem;
+  --bs-body-font-weight: 500;
+  --bs-font-sans-serif: 'Trispace', sans-serif;
+  --bs-body-color: #fff;
+  --bs-body-bg: #000;
+}
+
+html {
+  font-size: 10px;
+  min-height: 100%;
+  height: -webkit-fill-available;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+#app {
+  height: 100%;
+}
+
+.container {
+  --bs-gutter-x: 6rem;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.text-small {
+  font-size: 1.2rem;
+}

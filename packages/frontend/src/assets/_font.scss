@@ -1,0 +1,27 @@
+$fontName: 'Trispace';
+$fontId: 'trispace';
+$style: normal;
+$display: swap;
+$weight: 400;
+$fontDir: '/fonts';
+
+@mixin fontFace(
+  $fontName: $fontName,
+  $fontId: $fontId,
+  $style: $style,
+  $display: $display,
+  $weight: $weight,
+  $fontDir: $fontDir
+) {
+  @font-face {
+    font-family: '#{$fontName}';
+    font-style: $style;
+    font-display: $display;
+    font-weight: $weight;
+    src: url('#{$fontDir}/#{$fontId}/#{$weight}.woff') format('woff');
+  }
+}
+
+@include fontFace($weight: 500);
+@include fontFace($weight: 600);
+@include fontFace($weight: 700);

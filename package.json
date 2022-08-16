@@ -1,0 +1,13 @@
+{
+  "name": "happyplanetclub",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "emulators": "yarn functions:build && firebase emulators:start",
+    "functions:build": "yarn --cwd packages/functions build"
+  },
+  "dependencies": {
+    "firebase-tools": "^11.7.0"
+  }
+}

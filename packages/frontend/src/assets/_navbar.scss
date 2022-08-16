@@ -1,0 +1,19 @@
+.navbar {
+  &-brand {
+    max-width: 16.5rem;
+    display: block;
+    padding: 3rem;
+
+    img {
+      max-width: inherit;
+    }
+  }
+
+  .nav-link {
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .btn {
+  }
+}

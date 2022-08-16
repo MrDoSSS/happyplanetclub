@@ -1,0 +1,37 @@
+@use 'sass:math';
+
+// Colors
+$primary: #ab19ff;
+$secondary: #a2a2a2;
+$light: #fff;
+$success: #33ff00;
+$warning: #ff5c00;
+$link-color: #fff;
+$dark: #000;
+
+// Navbar
+$navbar-nav-link-padding-x: 1rem;
+$navbar-dark-color: #fff;
+
+// Btn
+$btn-border-radius: 1rem;
+$btn-padding-x: 1.7rem;
+$btn-padding-y: 1rem;
+$btn-font-weight: 700;
+$btn-font-size: 1.8rem;
+$btn-line-height: 1;
+
+// Other
+$spacer: 4rem;
+$card-spacer-y: math.div($spacer, 2);
+$card-spacer-x: math.div($spacer, 2);
+$modal-inner-padding: math.div($spacer, 2);
+$font-size-base: 1.6rem;
+$line-height-base: 1.4;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 800px,
+  xl: 810px,
+  xxl: 820px,
+);
