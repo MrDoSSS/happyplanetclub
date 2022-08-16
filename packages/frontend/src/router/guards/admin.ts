@@ -1,5 +1,5 @@
 export const admin: HPC.Guard = ({ next, store }) => {
-  if (store.loggedIn && store.user?.admin) {
+  if (store.loggedIn && store.admin) {
     next()
   } else {
     next({
