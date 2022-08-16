@@ -113,6 +113,7 @@ const whitelistStore = useWhitelistStore()
     left: 0;
     right: 0;
     height: 50vh;
+    min-height: 50rem;
     z-index: -1;
   }
 
