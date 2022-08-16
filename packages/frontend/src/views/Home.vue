@@ -219,7 +219,7 @@ const whitelistStore = useWhitelistStore()
     max-width: 45%;
   }
 
-  @include media-breakpoint-down(xs) {
+  @include media-breakpoint-down(sm) {
     max-width: 90%;
   }
 }
