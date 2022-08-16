@@ -14,7 +14,7 @@ const slisedWallet = computed(
 </script>
 
 <template>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand navbar-dark">
     <div
       class="container-xl flex-lg-row justify-content-lg-center align-items-lg-center flex-column"
     >

@@ -15,6 +15,7 @@ const whitelistStore = useWhitelistStore()
 
 <template>
   <section class="mint" id="mint">
+    <div class="mint-bg-mobile d-lg-none" />
     <div class="container">
       <div
         class="row justify-content-lg-between justify-content-center align-items-end"
@@ -102,6 +103,17 @@ const whitelistStore = useWhitelistStore()
 .mint {
   @include media-breakpoint-up(lg) {
     background: url('/home/bg.png') no-repeat center;
+  }
+
+  &-bg-mobile {
+    background: url('/home/bg.png') no-repeat;
+    background-position: 60% 0;
+    position: absolute;
+    top: 15rem;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    z-index: -1;
   }
 
   &-text {
