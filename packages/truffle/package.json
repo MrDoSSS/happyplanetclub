@@ -1,0 +1,21 @@
+{
+  "name": "happyplanetclub",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "eth-gas-reporter": "^0.2.25",
+    "truffle-assertions": "^0.9.2",
+    "truffle-plugin-verify": "^0.5.27"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "@truffle/hdwallet-provider": "^2.0.13",
+    "bip39": "^3.0.4",
+    "erc721a": "^4.2.2",
+    "ethereumjs-wallet": "^1.0.2",
+    "web3": "^1.7.5"
+  }
+}
