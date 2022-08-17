@@ -18,7 +18,7 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
 
   uint256 public price = 0.01 ether;
   uint256 public presalePrice = 0.01 ether;
-  uint256 public maxTotalSupply = 3333;
+  uint256 public maxTotalSupply = 4444;
 
   address t1 = 0x402351069CFF2F0324A147eC0a138a1C21491591;
   address t2 = 0x66B60143Fe3388551a4749aCD5C07Bbd368874ad;

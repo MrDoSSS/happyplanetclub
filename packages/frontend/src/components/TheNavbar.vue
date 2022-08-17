@@ -2,12 +2,15 @@
 import { emitter } from '@/event-bus'
 import { useWalletStore } from '@/store/wallet'
 import { useAuthStore } from '@/store/auth'
+import { useWhitelistStore } from '@/store/whitelist'
 import { computed } from 'vue'
 
 const showConnectModal = () => emitter.emit('ConnectModal:show', false)
 
 const walletStore = useWalletStore()
 const authStore = useAuthStore()
+const whitelistStore = useWhitelistStore()
+
 const slisedWallet = computed(
   () => `${walletStore.currentAccount.slice(0, 9)}...`
 )
@@ -19,7 +22,11 @@ const slisedWallet = computed(
       class="container-xl flex-lg-row justify-content-lg-center align-items-lg-center flex-column"
     >
       <router-link :to="{ name: 'home' }" class="navbar-brand me-0 me-lg-3">
-        <img src="/logo.png" alt="Happy planet club" />
+        <picture>
+          <source srcset="/logo.webp" type="image/webp" />
+          <source srcset="/logo.png" type="image/png" />
+          <img src="/logo.png" />
+        </picture>
       </router-link>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
@@ -30,14 +37,21 @@ const slisedWallet = computed(
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item ms-lg-2 full-width">
-          <span
-            class="text-primary fw-bolder"
-            v-if="walletStore.connected && authStore.loggedIn"
-          >
-            {{ slisedWallet }}
-          </span>
-          <button class="btn btn-primary" @click="showConnectModal" v-else>
+        <template v-if="walletStore.connected && authStore.loggedIn">
+          <li class="nav-item">
+            <span class="text-success nav-link" v-if="whitelistStore.exists">
+              Whitelisted
+            </span>
+            <span class="text-danger nav-link" v-else>Not Whitelisted</span>
+          </li>
+          <li class="nav-item">
+            <span class="text-primary fw-bolder nav-link">
+              {{ slisedWallet }}
+            </span>
+          </li>
+        </template>
+        <li class="nav-item ms-lg-2 full-width" v-else>
+          <button class="btn btn-primary" @click="showConnectModal">
             Connect Wallet
           </button>
         </li>

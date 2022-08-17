@@ -43,21 +43,14 @@ const whitelistStore = useWhitelistStore()
             <div>
               <button class="btn btn-primary mb-1">Mint (Soon)</button>
             </div>
-            <div
-              class="text-small"
-              v-if="walletStore.connected && authStore.loggedIn"
-            >
-              <span class="text-success" v-if="whitelistStore.exists">
-                Eligible for Pre-Sale!
-              </span>
-              <span class="text-danger" v-else>
-                Not eligible for Pre-Sale.
-              </span>
-            </div>
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-7">
-          <img src="/home/hero.png" alt="Hero" />
+          <picture>
+            <source srcset="/home/hero.webp" type="image/webp" />
+            <source srcset="/home/hero.png" type="image/png" />
+            <img src="/home/hero.png" />
+          </picture>
         </div>
       </div>
     </div>
@@ -68,7 +61,11 @@ const whitelistStore = useWhitelistStore()
         class="row justify-content-lg-start justify-content-center align-items-center gx-3"
       >
         <div class="col-12 col-md-6 col-lg-5 order-2 order-lg-1">
-          <img src="/home/feature.png" alt="Feature" />
+          <picture>
+            <source srcset="/home/feature.webp" type="image/webp" />
+            <source srcset="/home/feature.png" type="image/png" />
+            <img src="/home/feature.png" />
+          </picture>
         </div>
         <div class="col-12 col-lg-7 order-1 order-lg-2">
           <h2 class="text-primary">⍙⟒⌰☊⍜⎍ ☌⊑⏁ ⌰⟒⏁´⌇ ☌⍜</h2>
@@ -93,7 +90,11 @@ const whitelistStore = useWhitelistStore()
     </div>
     <Swiper :slides-per-view="mq.lgPlus ? 6 : 'auto'" :space-between="0">
       <SwiperSlide class="sneek" v-for="i in 6" :key="i">
-        <img :src="`/home/sneek-${i}.png`" />
+        <picture>
+          <source :srcset="`/home/sneek-${i}.webp`" type="image/webp" />
+          <source :srcset="`/home/sneek-${i}.png`" type="image/png" />
+          <img :src="`/home/sneek-${i}.png`" />
+        </picture>
       </SwiperSlide>
     </Swiper>
   </section>
@@ -103,10 +104,18 @@ const whitelistStore = useWhitelistStore()
 .mint {
   @include media-breakpoint-up(lg) {
     background: url('/home/bg.png') no-repeat center;
+
+    @supports (background-image: -webkit-image-set(url('/home/bg.webp') 1x)) {
+      background-image: -webkit-image-set(url('/home/bg.webp') 1x);
+    }
   }
 
   &-bg-mobile {
-    background: url('/home/bg.png') no-repeat;
+    background: url('/home/bg.png') no-repeat center;
+
+    @supports (background-image: -webkit-image-set(url('/home/bg.webp') 1x)) {
+      background-image: -webkit-image-set(url('/home/bg.webp') 1x);
+    }
     background-position: 60% 0;
     position: absolute;
     top: 15rem;
