@@ -14,7 +14,7 @@ service cloud.firestore {
     }
 
     match /whitelist/{wlId} {
-      allow read: if isOwner() || isAdmin();
+      allow read: if true;
       allow write: if isAdmin();
     }
 

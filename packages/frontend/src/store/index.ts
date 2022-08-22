@@ -1,5 +1,4 @@
 import { createPinia } from 'pinia'
-import { useAuthStore } from './auth'
 import { useWalletStore } from './wallet'
 import { setInbrowserProvider } from '@/ethereum'
 import { useWhitelistStore } from './whitelist'
@@ -17,19 +16,13 @@ export const initStore: {
   readyHandlers: [],
   async install() {
     const walletStore = useWalletStore()
-    const authStore = useAuthStore()
 
     setInbrowserProvider()
 
     walletStore.init()
     await walletStore.checkAccount()
-    await authStore.checkAuth(walletStore.currentAccount)
 
-    if (
-      authStore.loggedIn &&
-      walletStore.connected &&
-      authStore.address === walletStore.currentAccount
-    ) {
+    if (walletStore.connected) {
       initWeb3(walletStore.currentAccount)
       const whitelistStore = useWhitelistStore()
       await whitelistStore.find(walletStore.currentAccount)

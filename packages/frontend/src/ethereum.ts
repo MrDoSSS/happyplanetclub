@@ -6,17 +6,12 @@ window.Buffer = Buffer
 export let ethereum: typeof window.ethereum
 
 export const setInbrowserProvider = () => {
-  const providers = (window.ethereum as unknown as any)?.providers
-  if (providers) {
-    ethereum = providers.find((p: any) => p.isMetaMask)
-  } else {
-    ethereum = window.ethereum
-  }
+  ethereum = window.ethereum
 }
 
 export const setWalletLinkProvider = () => {
-  const APP_NAME = 'Backdoor casino'
-  const APP_LOGO_URL = 'https://gg.gg/logo.svg'
+  const APP_NAME = 'Happy Planet Club'
+  const APP_LOGO_URL = 'https://happyplanetclub.io/logo.png'
   const ETH_JSONRPC_URL = `https://mainnet.infura.io/v3/${
     import.meta.env.VITE_INFURA_PROJECT_ID
   }`

@@ -6,7 +6,7 @@
   "functions": {
     "source": "packages/functions",
     "predeploy": "yarn --cwd \"$RESOURCE_DIR\" build",
-    "ignore": [".runtimeconfig.json"]
+    "ignore": [".secret.local", "**/node_modules/**", ".env.local"]
   },
   "hosting": {
     "public": "packages/frontend/dist",
@@ -20,13 +20,16 @@
   },
   "emulators": {
     "auth": {
-      "port": 9099
+      "port": 9099,
+      "host": "0.0.0.0"
     },
     "functions": {
-      "port": 5001
+      "port": 5001,
+      "host": "0.0.0.0"
     },
     "firestore": {
-      "port": 8080
+      "port": 8080,
+      "host": "0.0.0.0"
     },
     "ui": {
       "enabled": true,

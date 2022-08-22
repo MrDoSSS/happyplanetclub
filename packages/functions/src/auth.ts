@@ -5,11 +5,11 @@ import { utf8ToHex } from 'web3-utils'
 import { generateNonce } from './utils'
 import { getAccount } from './web3'
 
-const app = firebase.app()
-const auth = app.auth()
-
 export const getUser = functions.https.onCall(async (data) => {
   try {
+    const app = firebase.app()
+    const auth = app.auth()
+
     const { publicAddress } = data
     const user = await auth.getUser(publicAddress)
 
@@ -18,14 +18,18 @@ export const getUser = functions.https.onCall(async (data) => {
       nonce: user.customClaims?.custonNonce,
       admin: user.customClaims?.admin,
     }
-  } catch {
-    throw new functions.https.HttpsError('not-found', '')
+  } catch (e) {
+    functions.logger.error(e)
+    throw new functions.https.HttpsError('not-found', 'User not found')
   }
 })
 
 export const createUser = functions
   .runWith({ secrets: ['OWNER_ADDRESS', 'OWNER_PK'] })
   .https.onCall(async (data) => {
+    const app = firebase.app()
+    const auth = app.auth()
+
     const account = getAccount()
     const { publicAddress } = data
     const custonNonce = generateNonce()
@@ -44,6 +48,9 @@ export const createUser = functions
 export const getAuthToken = functions
   .runWith({ secrets: ['OWNER_ADDRESS', 'OWNER_PK'] })
   .https.onCall(async (data) => {
+    const app = firebase.app()
+    const auth = app.auth()
+
     const account = getAccount()
     const { publicAddress, signature } = data
     const user = await auth.getUser(publicAddress)

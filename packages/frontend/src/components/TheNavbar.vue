@@ -1,14 +1,12 @@
 <script lang="ts" setup>
 import { emitter } from '@/event-bus'
 import { useWalletStore } from '@/store/wallet'
-import { useAuthStore } from '@/store/auth'
 import { useWhitelistStore } from '@/store/whitelist'
 import { computed } from 'vue'
 
 const showConnectModal = () => emitter.emit('ConnectModal:show', false)
 
 const walletStore = useWalletStore()
-const authStore = useAuthStore()
 const whitelistStore = useWhitelistStore()
 
 const slisedWallet = computed(
@@ -37,7 +35,7 @@ const slisedWallet = computed(
         </li>
       </ul>
       <ul class="navbar-nav">
-        <template v-if="walletStore.connected && authStore.loggedIn">
+        <template v-if="walletStore.connected">
           <li class="nav-item">
             <span class="text-success nav-link" v-if="whitelistStore.exists">
               Whitelisted

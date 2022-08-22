@@ -5,10 +5,17 @@
         <div class="flex-grow-1 text-center mb-2 mb-lg-0">
           Happy Planet Club. All rights reserved.
         </div>
-        <div>
-          <a href="https://twitter.com/HappyPlanetNFT" target="_blank">
-            <i class="bi bi-twitter"></i>
-          </a>
+        <div class="d-flex">
+          <div class="me-2">
+            <a href="https://twitter.com/HappyPlanetNFT" target="_blank">
+              <i class="bi bi-twitter"></i>
+            </a>
+          </div>
+          <div>
+            <a href="https://discord.gg/dQqGuFuJvd" target="_blank">
+              <i class="bi bi-discord"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

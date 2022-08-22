@@ -34,10 +34,8 @@ export const useWalletStore = defineStore('wallet', {
         if (this.connected) {
           initWeb3(this.currentAccount)
 
-          const authStore = useAuthStore()
           const whitelistStore = useWhitelistStore()
 
-          await authStore.signIn(this.currentAccount)
           await whitelistStore.find(this.currentAccount)
         }
       } catch (e) {
