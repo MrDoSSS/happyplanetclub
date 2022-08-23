@@ -24,11 +24,12 @@ const whitelistStore = useWhitelistStore()
           <div class="mint-text text-center text-lg-start">
             <h2>Hello, Earthling.</h2>
             <ul class="mb-4">
-              <li>Launch Date: TBD</li>
-              <li>Supply: 3000</li>
-              <li>Price: FREE</li>
-              <li>WL: 4 per Wallet</li>
-              <li>Public: 3 per Wallet</li>
+              <li>Launch Date: 08/27</li>
+              <li class="mb-2">Supply: 3000</li>
+              <li>Whitelist: 3:00PM EST</li>
+              <li class="mb-2">2 FREE + 2 for 0.006 ETH</li>
+              <li>Public: 3:20PM EST</li>
+              <li>1 FREE + 2 for 0.009 ETH</li>
             </ul>
             <div class="mb-1 mint-amount-container d-inline-block">
               <select class="mint-amount">
