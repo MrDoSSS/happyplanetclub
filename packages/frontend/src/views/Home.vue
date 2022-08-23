@@ -74,7 +74,7 @@ const whitelistStore = useWhitelistStore()
             Welcome to your new home. A place where everything is possible and
             sadness is unknown. Find your perfect purpose, mix up with your
             fellow brothers and be happy. Happy Planet Club is a free-mint NFT
-            collection on the ETH blockchain consisting of 4,444 tokens. Our
+            collection on the ETH blockchain consisting of 3,000 tokens. Our
             characters are divided into 5 different races. Find a great variety
             of traits and unique combinations. No&nbsp;promises, no roadmap,
             just art.
