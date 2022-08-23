@@ -17,6 +17,17 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/',
+    component: () => import('@/layouts/Empty.vue'),
+    children: [
+      {
+        path: '/admin/login',
+        name: 'admin-login',
+        component: () => import('@/views/admin/Login.vue'),
+      },
+    ],
+  },
+  {
     path: '/admin',
     component: () => import('@/layouts/Admin.vue'),
     children: [
@@ -24,6 +35,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'dashboard',
         name: 'admin-dashboard',
         component: () => import('@/views/admin/Dashboard.vue'),
+      },
+      {
+        name: 'admin-whitelist-index',
+        path: 'whitelist',
+        component: () => import('@/views/admin/Whitelist.vue'),
       },
     ],
     meta: {

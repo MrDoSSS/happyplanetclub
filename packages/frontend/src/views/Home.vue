@@ -25,10 +25,10 @@ const whitelistStore = useWhitelistStore()
             <h2>Hello, Earthling.</h2>
             <ul class="mb-4">
               <li>Launch Date: TBD</li>
-              <li>Supply: 4444</li>
+              <li>Supply: 3000</li>
               <li>Price: FREE</li>
-              <li>WL: 2 per Wallet</li>
-              <li>Public: 2 per Wallet</li>
+              <li>WL: 4 per Wallet</li>
+              <li>Public: 3 per Wallet</li>
             </ul>
             <div class="mb-1 mint-amount-container d-inline-block">
               <select class="mint-amount">

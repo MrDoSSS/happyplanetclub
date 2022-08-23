@@ -3,7 +3,7 @@ export const admin: HPC.Guard = ({ next, store }) => {
     next()
   } else {
     next({
-      name: 'home',
+      name: 'admin-login',
       stopPipeline: true,
     })
   }
