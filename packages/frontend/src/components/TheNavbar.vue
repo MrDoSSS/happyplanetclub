@@ -37,12 +37,6 @@ const slisedWallet = computed(
       <ul class="navbar-nav">
         <template v-if="walletStore.connected">
           <li class="nav-item">
-            <span class="text-success nav-link" v-if="whitelistStore.exists">
-              Whitelisted
-            </span>
-            <span class="text-danger nav-link" v-else>Not Whitelisted</span>
-          </li>
-          <li class="nav-item">
             <span class="text-primary fw-bolder nav-link">
               {{ slisedWallet }}
             </span>

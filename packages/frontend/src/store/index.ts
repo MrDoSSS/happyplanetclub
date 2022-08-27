@@ -26,10 +26,6 @@ export const initStore: {
 
       if (walletStore.connected) {
         initWeb3(walletStore.currentAccount)
-        const whitelistStore = useWhitelistStore()
-        const contractStore = useContractStore()
-        await whitelistStore.find(walletStore.currentAccount)
-        await contractStore.init(walletStore.currentAccount)
       } else {
         walletStore.disconnect()
       }
