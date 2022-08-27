@@ -16,26 +16,28 @@ export const initStore: {
   ready: false,
   readyHandlers: [],
   async install() {
-    const walletStore = useWalletStore()
+    try {
+      const walletStore = useWalletStore()
 
-    setInbrowserProvider()
+      setInbrowserProvider()
 
-    walletStore.init()
-    await walletStore.checkAccount()
+      walletStore.init()
+      await walletStore.checkAccount()
 
-    if (walletStore.connected) {
-      initWeb3(walletStore.currentAccount)
-      const whitelistStore = useWhitelistStore()
-      const contractStore = useContractStore()
-      await whitelistStore.find(walletStore.currentAccount)
-      await contractStore.init(walletStore.currentAccount)
-    } else {
-      walletStore.disconnect()
+      if (walletStore.connected) {
+        initWeb3(walletStore.currentAccount)
+        const whitelistStore = useWhitelistStore()
+        const contractStore = useContractStore()
+        await whitelistStore.find(walletStore.currentAccount)
+        await contractStore.init(walletStore.currentAccount)
+      } else {
+        walletStore.disconnect()
+      }
+    } finally {
+      this.ready = true
+
+      this.readyHandlers.forEach((resolve) => resolve())
     }
-
-    this.ready = true
-
-    this.readyHandlers.forEach((resolve) => resolve())
   },
   isReady() {
     if (this.ready) return Promise.resolve()
