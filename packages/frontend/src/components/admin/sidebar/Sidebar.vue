@@ -13,6 +13,11 @@ import NavItem from './NavItem.vue'
         to="admin-whitelist-index"
         title="Whitelist"
       />
+      <NavItem
+        icon="bi-person-lines-fill"
+        to="admin-airdrop-index"
+        title="Airdrop"
+      />
       <!-- <NavItem icon="bi-gear" to="admin-settings-index" title="Settings" /> -->
     </ul>
     <ul class="nav nav-pills flex-column text-center">
