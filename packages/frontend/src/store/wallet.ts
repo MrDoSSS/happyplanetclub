@@ -3,6 +3,7 @@ import { useAuthStore } from '@/store/auth'
 import { defineStore } from 'pinia'
 import { ethereum } from '@/ethereum'
 import { initWeb3 } from '@/web3'
+import { useContractStore } from './contract'
 
 export const useWalletStore = defineStore('wallet', {
   state: () => ({
@@ -35,8 +36,10 @@ export const useWalletStore = defineStore('wallet', {
           initWeb3(this.currentAccount)
 
           const whitelistStore = useWhitelistStore()
+          const contractStore = useContractStore()
 
           await whitelistStore.find(this.currentAccount)
+          await contractStore.init(this.currentAccount)
         }
       } catch (e) {
         console.error(e)

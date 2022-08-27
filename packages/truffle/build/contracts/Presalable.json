@@ -71,15 +71,15 @@
         282
       ],
       "Presalable": [
-        4070
+        4088
       ]
     },
-    "id": 4071,
+    "id": 4089,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3962,
+        "id": 3980,
         "literals": [
           "solidity",
           "^",
@@ -92,10 +92,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/utils/Context.sol",
         "file": "@openzeppelin/contracts/utils/Context.sol",
-        "id": 3963,
+        "id": 3981,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 4071,
+        "scope": 4089,
         "sourceUnit": 283,
         "src": "57:51:12",
         "symbolAliases": [],
@@ -106,13 +106,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 3964,
+              "id": 3982,
               "name": "Context",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 282,
               "src": "142:7:12"
             },
-            "id": 3965,
+            "id": 3983,
             "nodeType": "InheritanceSpecifier",
             "src": "142:7:12"
           }
@@ -121,9 +121,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 4070,
+        "id": 4088,
         "linearizedBaseContracts": [
-          4070,
+          4088,
           282
         ],
         "name": "Presalable",
@@ -133,29 +133,29 @@
           {
             "anonymous": false,
             "documentation": {
-              "id": 3966,
+              "id": 3984,
               "nodeType": "StructuredDocumentation",
               "src": "154:73:12",
               "text": " @dev Emitted when the presale is triggered by `account`."
             },
             "eventSelector": "b1412a7cd96bc4195d633c938189c320dcbeb2cff60c1b8bdd872678fb3514b4",
-            "id": 3970,
+            "id": 3988,
             "name": "Presaled",
             "nameLocation": "236:8:12",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3969,
+              "id": 3987,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3968,
+                  "id": 3986,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "account",
                   "nameLocation": "253:7:12",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3970,
+                  "scope": 3988,
                   "src": "245:15:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -164,7 +164,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3967,
+                    "id": 3985,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "245:7:12",
@@ -184,29 +184,29 @@
           {
             "anonymous": false,
             "documentation": {
-              "id": 3971,
+              "id": 3989,
               "nodeType": "StructuredDocumentation",
               "src": "266:70:12",
               "text": " @dev Emitted when the presale is lifted by `account`."
             },
             "eventSelector": "9e209206b95275a497262e47a30901f0716b2d6d19618dd5e9b7b68237e7cb71",
-            "id": 3975,
+            "id": 3993,
             "name": "Unpresaled",
             "nameLocation": "345:10:12",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3974,
+              "id": 3992,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3973,
+                  "id": 3991,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "account",
                   "nameLocation": "364:7:12",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3975,
+                  "scope": 3993,
                   "src": "356:15:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -215,7 +215,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3972,
+                    "id": 3990,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "356:7:12",
@@ -234,12 +234,12 @@
           },
           {
             "constant": false,
-            "id": 3977,
+            "id": 3995,
             "mutability": "mutable",
             "name": "_presaled",
             "nameLocation": "390:9:12",
             "nodeType": "VariableDeclaration",
-            "scope": 4070,
+            "scope": 4088,
             "src": "377:22:12",
             "stateVariable": true,
             "storageLocation": "default",
@@ -248,7 +248,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 3976,
+              "id": 3994,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "377:4:12",
@@ -261,12 +261,12 @@
           },
           {
             "constant": false,
-            "id": 3979,
+            "id": 3997,
             "mutability": "mutable",
             "name": "_allowedPublic",
             "nameLocation": "416:14:12",
             "nodeType": "VariableDeclaration",
-            "scope": 4070,
+            "scope": 4088,
             "src": "403:27:12",
             "stateVariable": true,
             "storageLocation": "default",
@@ -275,7 +275,7 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 3978,
+              "id": 3996,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
               "src": "403:4:12",
@@ -288,7 +288,7 @@
           },
           {
             "body": {
-              "id": 3987,
+              "id": 4005,
               "nodeType": "Block",
               "src": "461:51:12",
               "statements": [
@@ -296,11 +296,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 3982,
+                        "id": 4000,
                         "name": "_presaled",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3977,
+                        "referencedDeclaration": 3995,
                         "src": "475:9:12",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -309,7 +309,7 @@
                       },
                       {
                         "hexValue": "53616c6520636c6f736564",
-                        "id": 3983,
+                        "id": 4001,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -335,7 +335,7 @@
                           "typeString": "literal_string \"Sale closed\""
                         }
                       ],
-                      "id": 3981,
+                      "id": 3999,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -349,7 +349,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 3984,
+                    "id": 4002,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -364,23 +364,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3985,
+                  "id": 4003,
                   "nodeType": "ExpressionStatement",
                   "src": "467:33:12"
                 },
                 {
-                  "id": 3986,
+                  "id": 4004,
                   "nodeType": "PlaceholderStatement",
                   "src": "506:1:12"
                 }
               ]
             },
-            "id": 3988,
+            "id": 4006,
             "name": "whenPresaled",
             "nameLocation": "446:12:12",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3980,
+              "id": 3998,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "458:2:12"
@@ -391,7 +391,7 @@
           },
           {
             "body": {
-              "id": 3997,
+              "id": 4015,
               "nodeType": "Block",
               "src": "543:55:12",
               "statements": [
@@ -399,7 +399,7 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 3992,
+                        "id": 4010,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -409,11 +409,11 @@
                         "prefix": true,
                         "src": "557:10:12",
                         "subExpression": {
-                          "id": 3991,
+                          "id": 4009,
                           "name": "_presaled",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3977,
+                          "referencedDeclaration": 3995,
                           "src": "558:9:12",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
@@ -427,7 +427,7 @@
                       },
                       {
                         "hexValue": "50726573616c6520636c6f736564",
-                        "id": 3993,
+                        "id": 4011,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -453,7 +453,7 @@
                           "typeString": "literal_string \"Presale closed\""
                         }
                       ],
-                      "id": 3990,
+                      "id": 4008,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -467,7 +467,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 3994,
+                    "id": 4012,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -482,23 +482,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3995,
+                  "id": 4013,
                   "nodeType": "ExpressionStatement",
                   "src": "549:37:12"
                 },
                 {
-                  "id": 3996,
+                  "id": 4014,
                   "nodeType": "PlaceholderStatement",
                   "src": "592:1:12"
                 }
               ]
             },
-            "id": 3998,
+            "id": 4016,
             "name": "whenNotPresaled",
             "nameLocation": "525:15:12",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3989,
+              "id": 4007,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "540:2:12"
@@ -509,7 +509,7 @@
           },
           {
             "body": {
-              "id": 4006,
+              "id": 4024,
               "nodeType": "Block",
               "src": "631:56:12",
               "statements": [
@@ -517,11 +517,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 4001,
+                        "id": 4019,
                         "name": "_allowedPublic",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3979,
+                        "referencedDeclaration": 3997,
                         "src": "645:14:12",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -530,7 +530,7 @@
                       },
                       {
                         "hexValue": "53616c6520636c6f736564",
-                        "id": 4002,
+                        "id": 4020,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -556,7 +556,7 @@
                           "typeString": "literal_string \"Sale closed\""
                         }
                       ],
-                      "id": 4000,
+                      "id": 4018,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -570,7 +570,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 4003,
+                    "id": 4021,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -585,23 +585,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4004,
+                  "id": 4022,
                   "nodeType": "ExpressionStatement",
                   "src": "637:38:12"
                 },
                 {
-                  "id": 4005,
+                  "id": 4023,
                   "nodeType": "PlaceholderStatement",
                   "src": "681:1:12"
                 }
               ]
             },
-            "id": 4007,
+            "id": 4025,
             "name": "whenAllowedPublic",
             "nameLocation": "611:17:12",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3999,
+              "id": 4017,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "628:2:12"
@@ -612,32 +612,32 @@
           },
           {
             "body": {
-              "id": 4014,
+              "id": 4032,
               "nodeType": "Block",
               "src": "746:27:12",
               "statements": [
                 {
                   "expression": {
-                    "id": 4012,
+                    "id": 4030,
                     "name": "_presaled",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 3977,
+                    "referencedDeclaration": 3995,
                     "src": "759:9:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 4011,
-                  "id": 4013,
+                  "functionReturnParameters": 4029,
+                  "id": 4031,
                   "nodeType": "Return",
                   "src": "752:16:12"
                 }
               ]
             },
             "functionSelector": "4cb2f9ea",
-            "id": 4015,
+            "id": 4033,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -645,23 +645,23 @@
             "nameLocation": "700:8:12",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4008,
+              "id": 4026,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "708:2:12"
             },
             "returnParameters": {
-              "id": 4011,
+              "id": 4029,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4010,
+                  "id": 4028,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4015,
+                  "scope": 4033,
                   "src": "740:4:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -670,7 +670,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4009,
+                    "id": 4027,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "740:4:12",
@@ -684,7 +684,7 @@
               ],
               "src": "739:6:12"
             },
-            "scope": 4070,
+            "scope": 4088,
             "src": "691:82:12",
             "stateMutability": "view",
             "virtual": true,
@@ -692,32 +692,32 @@
           },
           {
             "body": {
-              "id": 4022,
+              "id": 4040,
               "nodeType": "Block",
               "src": "837:32:12",
               "statements": [
                 {
                   "expression": {
-                    "id": 4020,
+                    "id": 4038,
                     "name": "_allowedPublic",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 3979,
+                    "referencedDeclaration": 3997,
                     "src": "850:14:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 4019,
-                  "id": 4021,
+                  "functionReturnParameters": 4037,
+                  "id": 4039,
                   "nodeType": "Return",
                   "src": "843:21:12"
                 }
               ]
             },
             "functionSelector": "09c214df",
-            "id": 4023,
+            "id": 4041,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -725,23 +725,23 @@
             "nameLocation": "786:13:12",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4016,
+              "id": 4034,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "799:2:12"
             },
             "returnParameters": {
-              "id": 4019,
+              "id": 4037,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4018,
+                  "id": 4036,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4023,
+                  "scope": 4041,
                   "src": "831:4:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -750,7 +750,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4017,
+                    "id": 4035,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "831:4:12",
@@ -764,7 +764,7 @@
               ],
               "src": "830:6:12"
             },
-            "scope": 4070,
+            "scope": 4088,
             "src": "777:92:12",
             "stateMutability": "view",
             "virtual": true,
@@ -772,23 +772,23 @@
           },
           {
             "body": {
-              "id": 4037,
+              "id": 4055,
               "nodeType": "Block",
               "src": "926:60:12",
               "statements": [
                 {
                   "expression": {
-                    "id": 4030,
+                    "id": 4048,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 4028,
+                      "id": 4046,
                       "name": "_presaled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3977,
+                      "referencedDeclaration": 3995,
                       "src": "932:9:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -799,7 +799,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 4029,
+                      "id": 4047,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -819,7 +819,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 4031,
+                  "id": 4049,
                   "nodeType": "ExpressionStatement",
                   "src": "932:16:12"
                 },
@@ -830,7 +830,7 @@
                         "arguments": [],
                         "expression": {
                           "argumentTypes": [],
-                          "id": 4033,
+                          "id": 4051,
                           "name": "_msgSender",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -841,7 +841,7 @@
                             "typeString": "function () view returns (address)"
                           }
                         },
-                        "id": 4034,
+                        "id": 4052,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -864,18 +864,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 4032,
+                      "id": 4050,
                       "name": "Presaled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3970,
+                      "referencedDeclaration": 3988,
                       "src": "959:8:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 4035,
+                    "id": 4053,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -890,24 +890,24 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4036,
+                  "id": 4054,
                   "nodeType": "EmitStatement",
                   "src": "954:27:12"
                 }
               ]
             },
-            "id": 4038,
+            "id": 4056,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 4026,
+                "id": 4044,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 4025,
+                  "id": 4043,
                   "name": "whenNotPresaled",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 3998,
+                  "referencedDeclaration": 4016,
                   "src": "910:15:12"
                 },
                 "nodeType": "ModifierInvocation",
@@ -918,18 +918,18 @@
             "nameLocation": "882:8:12",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4024,
+              "id": 4042,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "890:2:12"
             },
             "returnParameters": {
-              "id": 4027,
+              "id": 4045,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "926:0:12"
             },
-            "scope": 4070,
+            "scope": 4088,
             "src": "873:113:12",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -937,23 +937,23 @@
           },
           {
             "body": {
-              "id": 4052,
+              "id": 4070,
               "nodeType": "Block",
               "src": "1042:63:12",
               "statements": [
                 {
                   "expression": {
-                    "id": 4045,
+                    "id": 4063,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 4043,
+                      "id": 4061,
                       "name": "_presaled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3977,
+                      "referencedDeclaration": 3995,
                       "src": "1048:9:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -964,7 +964,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "66616c7365",
-                      "id": 4044,
+                      "id": 4062,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -984,7 +984,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 4046,
+                  "id": 4064,
                   "nodeType": "ExpressionStatement",
                   "src": "1048:17:12"
                 },
@@ -995,7 +995,7 @@
                         "arguments": [],
                         "expression": {
                           "argumentTypes": [],
-                          "id": 4048,
+                          "id": 4066,
                           "name": "_msgSender",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -1006,7 +1006,7 @@
                             "typeString": "function () view returns (address)"
                           }
                         },
-                        "id": 4049,
+                        "id": 4067,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1029,18 +1029,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 4047,
+                      "id": 4065,
                       "name": "Unpresaled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3975,
+                      "referencedDeclaration": 3993,
                       "src": "1076:10:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 4050,
+                    "id": 4068,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1055,24 +1055,24 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 4051,
+                  "id": 4069,
                   "nodeType": "EmitStatement",
                   "src": "1071:29:12"
                 }
               ]
             },
-            "id": 4053,
+            "id": 4071,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 4041,
+                "id": 4059,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 4040,
+                  "id": 4058,
                   "name": "whenPresaled",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 3988,
+                  "referencedDeclaration": 4006,
                   "src": "1029:12:12"
                 },
                 "nodeType": "ModifierInvocation",
@@ -1083,18 +1083,18 @@
             "nameLocation": "999:10:12",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4039,
+              "id": 4057,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1009:2:12"
             },
             "returnParameters": {
-              "id": 4042,
+              "id": 4060,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1042:0:12"
             },
-            "scope": 4070,
+            "scope": 4088,
             "src": "990:115:12",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -1102,23 +1102,23 @@
           },
           {
             "body": {
-              "id": 4060,
+              "id": 4078,
               "nodeType": "Block",
               "src": "1150:32:12",
               "statements": [
                 {
                   "expression": {
-                    "id": 4058,
+                    "id": 4076,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 4056,
+                      "id": 4074,
                       "name": "_allowedPublic",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3979,
+                      "referencedDeclaration": 3997,
                       "src": "1156:14:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1129,7 +1129,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 4057,
+                      "id": 4075,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1149,13 +1149,13 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 4059,
+                  "id": 4077,
                   "nodeType": "ExpressionStatement",
                   "src": "1156:21:12"
                 }
               ]
             },
-            "id": 4061,
+            "id": 4079,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1163,18 +1163,18 @@
             "nameLocation": "1118:12:12",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4054,
+              "id": 4072,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1130:2:12"
             },
             "returnParameters": {
-              "id": 4055,
+              "id": 4073,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1150:0:12"
             },
-            "scope": 4070,
+            "scope": 4088,
             "src": "1109:73:12",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -1182,23 +1182,23 @@
           },
           {
             "body": {
-              "id": 4068,
+              "id": 4086,
               "nodeType": "Block",
               "src": "1230:33:12",
               "statements": [
                 {
                   "expression": {
-                    "id": 4066,
+                    "id": 4084,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 4064,
+                      "id": 4082,
                       "name": "_allowedPublic",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3979,
+                      "referencedDeclaration": 3997,
                       "src": "1236:14:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1209,7 +1209,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "66616c7365",
-                      "id": 4065,
+                      "id": 4083,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1229,13 +1229,13 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 4067,
+                  "id": 4085,
                   "nodeType": "ExpressionStatement",
                   "src": "1236:22:12"
                 }
               ]
             },
-            "id": 4069,
+            "id": 4087,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1243,25 +1243,25 @@
             "nameLocation": "1195:15:12",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4062,
+              "id": 4080,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1210:2:12"
             },
             "returnParameters": {
-              "id": 4063,
+              "id": 4081,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1230:0:12"
             },
-            "scope": 4070,
+            "scope": 4088,
             "src": "1186:77:12",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 4071,
+        "scope": 4089,
         "src": "110:1155:12",
         "usedErrors": []
       }
@@ -1274,7 +1274,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-08-27T13:11:40.393Z",
+  "updatedAt": "2022-08-27T16:32:12.067Z",
   "devdoc": {
     "events": {
       "Presaled(address)": {

@@ -1,16 +1,109 @@
 <script lang="ts" setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import { useWhitelistStore } from '@/store/whitelist'
 import { useWalletStore } from '@/store/wallet'
-import { useAuthStore } from '@/store/auth'
+import { useContractStore } from '@/store/contract'
+import { estimateGas } from '@/utils'
+import { emitter } from '@/event-bus'
+import { contract } from '@/web3'
+import { signatureForAll } from '@/firebase/functions'
 
 import 'swiper/css'
 
 const mq = inject('mq') as any
 const walletStore = useWalletStore()
-const authStore = useAuthStore()
 const whitelistStore = useWhitelistStore()
+const contractStore = useContractStore()
+
+const mintAmount = ref('')
+const loading = ref(false)
+
+const status = ref<
+  'init' | 'error' | 'success' | 'presale-error' | 'amount-error'
+>('init')
+
+const mint = async () => {
+  if (!walletStore.connected) return emitter.emit('ConnectModal:show', false)
+  try {
+    if (loading.value) return
+
+    const amount = parseInt(mintAmount.value)
+
+    if (!amount) return
+
+    loading.value = true
+    status.value = 'init'
+    const methodName =
+      whitelistStore.exists && contractStore.presaled ? 'presaleMint' : 'mint'
+
+    if (methodName === 'mint' && !contractStore.allowedPublic) {
+      return (status.value = 'presale-error')
+    }
+
+    let signature: string
+
+    if (methodName === 'mint') {
+      const { data } = await signatureForAll(walletStore.currentAccount)
+      signature = data
+    } else {
+      signature = whitelistStore.signature
+    }
+
+    const numberMinted = await contract.methods
+      .tokenOwnersCounter(walletStore.currentAccount!)
+      .call()
+      .then(parseInt)
+
+    if (
+      (methodName === 'mint' && numberMinted + amount > 3) ||
+      (methodName === 'presaleMint' && numberMinted + amount > 4)
+    ) {
+      return (status.value = 'amount-error')
+    }
+
+    const method = contract.methods[methodName](amount, signature)
+    const price =
+      whitelistStore.exists && contractStore.presaled
+        ? contractStore.presalePrice
+        : contractStore.price
+
+    let nonFreeAmount = 0
+
+    if (methodName === 'mint') {
+      nonFreeAmount =
+        numberMinted === 2
+          ? 1
+          : numberMinted + amount - 1 >= 0
+          ? numberMinted + amount - 1
+          : 0
+    } else {
+      nonFreeAmount =
+        numberMinted === 3
+          ? 1
+          : numberMinted + amount - 2 >= 0
+          ? numberMinted + amount - 2
+          : 0
+    }
+
+    const value = price * nonFreeAmount
+    const gas = await estimateGas(method, 80000 * amount, { value })
+
+    await method.send({
+      gas,
+      value,
+      maxPriorityFeePerGas: null,
+      maxFeePerGas: null,
+    })
+
+    status.value = 'success'
+  } catch (e) {
+    console.error('mint error', e)
+    status.value = 'error'
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <template>
@@ -32,7 +125,7 @@ const whitelistStore = useWhitelistStore()
               <li>1 FREE + 2 for 0.009 ETH</li>
             </ul>
             <div class="mb-1 mint-amount-container d-inline-block">
-              <select class="mint-amount">
+              <select class="mint-amount" v-model="mintAmount">
                 <option value="" disabled selected>How many?</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -42,7 +135,28 @@ const whitelistStore = useWhitelistStore()
               <i class="bi bi-caret-down-fill"></i>
             </div>
             <div>
-              <button class="btn btn-primary mb-1">Mint (Soon)</button>
+              <button
+                class="btn btn-primary mb-1"
+                @click="mint"
+                :disabled="loading"
+              >
+                Mint
+              </button>
+              <div class="text-warning" v-if="loading">Minting...</div>
+              <div class="fs-6 text text-danger" v-else>
+                <div v-if="status === 'presale-error'">
+                  Mint now available only for whitelist members!
+                </div>
+                <div v-else-if="status === 'amount-error'">
+                  Exceeds maximum tokens at address
+                </div>
+                <div v-else-if="status === 'error'">
+                  Ops, something went wrong. Try&nbsp;again.
+                </div>
+                <div class="text-success" v-else-if="status === 'success'">
+                  Mint done! Check OpenSea.
+                </div>
+              </div>
             </div>
           </div>
         </div>

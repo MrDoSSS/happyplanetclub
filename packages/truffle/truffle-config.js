@@ -45,8 +45,8 @@ module.exports = {
         })
       },
       network_id: 1,
-      gas: 3208258,
-      gasPrice: web3.utils.toWei('23', 'gwei'),
+      gas: 2996303,
+      gasPrice: web3.utils.toWei('8', 'gwei'),
     },
   },
   compilers: {

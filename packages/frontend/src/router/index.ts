@@ -41,6 +41,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'whitelist',
         component: () => import('@/views/admin/Whitelist.vue'),
       },
+      {
+        name: 'admin-airdrop-index',
+        path: 'airdrop',
+        component: () => import('@/views/admin/Airdrop.vue'),
+      },
     ],
     meta: {
       guard: ['admin'],
