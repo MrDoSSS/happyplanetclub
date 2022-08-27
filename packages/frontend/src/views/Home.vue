@@ -142,7 +142,7 @@ const mint = async () => {
               >
                 Mint
               </button>
-              <div class="text-warning" v-if="loading">Wait...</div>
+              <div class="text-warning" v-if="loading">Minting...</div>
               <div class="fs-6 text text-danger" v-else>
                 <div v-if="status === 'presale-error'">
                   Mint now available only for whitelist members!
