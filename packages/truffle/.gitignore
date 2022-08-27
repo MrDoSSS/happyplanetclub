@@ -1,1 +1,3 @@
 .env
+account-keys.json
+ganache-db

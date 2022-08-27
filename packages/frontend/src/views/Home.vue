@@ -51,7 +51,7 @@ const mint = async () => {
     }
 
     const numberMinted = await contract.methods
-      .numberMinted(walletStore.currentAccount!)
+      .tokenOwnersCounter(walletStore.currentAccount!)
       .call()
       .then(parseInt)
 

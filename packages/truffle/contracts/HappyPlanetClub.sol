@@ -20,6 +20,8 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
   uint256 public presalePrice = 0.006 ether;
   uint256 public maxTotalSupply = 3000;
 
+  mapping(address => uint256) public tokenOwnersCounter;
+
   address t1 = 0x402351069CFF2F0324A147eC0a138a1C21491591;
   address t2 = 0xe6Fa2a32A99ad27Cd21A9E740405DBA7e0C6e3f3;
 
@@ -44,30 +46,34 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
     address signer = _recoverSigner(msg.sender, _signature);
     
     require(signer == owner(), "Not authorized to mint");
-    require(_numberMinted(msg.sender) + _amount <= 3, "Can only mint 3 tokens at address");
+    require(tokenOwnersCounter[msg.sender] + _amount <= 3, "Can only mint 3 tokens at address");
     require(_totalMinted() + _amount <= maxTotalSupply, "Exceeds maximum supply");
 
-    (, uint256 _nonFreeAmount) = _numberMinted(msg.sender) == 2 
-                                 ? (true, 1) : (_numberMinted(msg.sender) + _amount).trySub(1);
+    (, uint256 _nonFreeAmount) = tokenOwnersCounter[msg.sender] == 2 
+                                 ? (true, 1) : (tokenOwnersCounter[msg.sender] + _amount).trySub(1);
 
     require(_nonFreeAmount == 0 || msg.value >= price * _nonFreeAmount, "Ether value sent is not correct");
 
     _safeMint(msg.sender, _amount);
+
+    tokenOwnersCounter[msg.sender] += _amount;
   }
 
   function presaleMint(uint256 _amount, bytes memory _signature) public payable whenPresaled whenNotPaused {        
     address signer = _recoverSigner(msg.sender, _signature);
 
     require(signer == owner(), "Not authorized to mint");
-    require(_numberMinted(msg.sender) + _amount <= 4, "Can only mint 4 tokens at address");
+    require(tokenOwnersCounter[msg.sender] + _amount <= 4, "Can only mint 4 tokens at address");
     require(_totalMinted() + _amount <= maxTotalSupply, "Exceeds maximum supply");
 
-    (, uint256 _nonFreeAmount) = _numberMinted(msg.sender) == 3 
-                                 ? (true, 1) : (_numberMinted(msg.sender) + _amount).trySub(2);
+    (, uint256 _nonFreeAmount) = tokenOwnersCounter[msg.sender] == 3 
+                                 ? (true, 1) : (tokenOwnersCounter[msg.sender] + _amount).trySub(2);
 
     require(_nonFreeAmount == 0 || msg.value >= presalePrice * _nonFreeAmount, "Ether value sent is not correct");
 
     _safeMint(msg.sender, _amount);
+
+    tokenOwnersCounter[msg.sender] += _amount;
   }
 
   function airdrop(address _owner, uint256 _amount) public onlyOwner {

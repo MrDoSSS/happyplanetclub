@@ -3,6 +3,6 @@ const HappyPlanetClub = artifacts.require('HappyPlanetClub')
 module.exports = function (deployer) {
   deployer.deploy(
     HappyPlanetClub,
-    'ipfs://QmYQoBe5prrdzVQUdxrAkhG2LaogwRsGVUmFMbNfzYDrPt/'
+    'ipfs://QmNsrJTrRrzfcMrRanR2R4LYRK8yZLhHcKWDnhcfSj5Lce/'
   )
 }

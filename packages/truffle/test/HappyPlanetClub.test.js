@@ -3,22 +3,16 @@ const HappyPlanetClub = artifacts.require('HappyPlanetClub')
 const truffleAssert = require('truffle-assertions')
 const bip39 = require('bip39')
 const { hdkey } = require('ethereumjs-wallet')
+const fs = require('fs')
+const basePath = process.cwd()
 
 const getAccounts = async (count) => {
-  const seed = await bip39.mnemonicToSeed(process.env.MNEMONIC)
-  const hdk = hdkey.fromMasterSeed(seed)
-  const accounts = []
-
-  for (let i = 0; i < count; i++) {
-    const addressNode = hdk.derivePath(`m/44'/60'/0'/0/${i}`)
-    const address = addressNode.getWallet().getAddressString()
-    const pk = addressNode.getWallet().getPrivateKeyString()
-
-    accounts.push({
-      address,
-      pk,
-    })
-  }
+  const buff = fs.readFileSync(`${basePath}/account-keys.json`)
+  const json = JSON.parse(buff)
+  const accounts = Object.entries(json.private_keys).map(([address, pk]) => ({
+    address,
+    pk,
+  }))
 
   return accounts
 }
@@ -27,7 +21,7 @@ contract('HappyPlanetClub', () => {
   let contract, deployer, holderOne, holderTwo
 
   before(async () => {
-    ;[deployer, holderOne, holderTwo] = await getAccounts(3)
+    ;[deployer, holderOne, holderTwo] = await getAccounts()
   })
 
   beforeEach(async () => (contract = await HappyPlanetClub.new('')))
@@ -119,6 +113,22 @@ contract('HappyPlanetClub', () => {
     })
   })
 
+  describe('setPrice', () => {
+    it('must be set price', async () => {
+      const price = web3.utils.toWei('0.05')
+      await truffleAssert.passes(contract.setPrice(price))
+      assert.equal(await contract.price(), price)
+    })
+  })
+
+  describe('setPresalePrice', () => {
+    it('must be set presalePrice', async () => {
+      const price = web3.utils.toWei('0.05')
+      await truffleAssert.passes(contract.setPresalePrice(price))
+      assert.equal(await contract.presalePrice(), price)
+    })
+  })
+
   describe('setBaseURI', () => {
     it('must be set baseTokenURI', async () => {
       const baseURI = 'baseURI'
@@ -130,7 +140,7 @@ contract('HappyPlanetClub', () => {
   describe('mint', () => {
     let validSign, unvalidSign
 
-    beforeEach(() => contract.unpresale())
+    beforeEach(() => contract.allowPublic())
 
     before(async () => {
       validSign = (
@@ -149,7 +159,145 @@ contract('HappyPlanetClub', () => {
       ).signature
     })
 
-    it('when everything is ok must be minted token', async () => {})
+    it('when everything is ok must be minted token', async () => {
+      await truffleAssert.passes(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 1)
+    })
+
+    it('when everything is ok must be minted token 2', async () => {
+      await truffleAssert.passes(
+        contract.mint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 2)
+    })
+
+    it('when everything is ok must be minted token 3', async () => {
+      await truffleAssert.passes(
+        contract.mint(3, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 3)
+    })
+
+    it('when everything is ok must be minted token 1+1', async () => {
+      await truffleAssert.passes(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 2)
+    })
+
+    it('when everything is ok must be minted token 1+2', async () => {
+      await truffleAssert.passes(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.mint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 3)
+    })
+
+    it('when everything is ok must be minted token 2+1', async () => {
+      await truffleAssert.passes(
+        contract.mint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 3)
+    })
+
+    it('when disallowPublic must be fails', async () => {
+      await contract.disallowPublic()
+      await truffleAssert.fails(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+    })
+
+    it('when token owners count > 3 must be fails', async () => {
+      await truffleAssert.passes(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.mint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        })
+      )
+
+      await truffleAssert.fails(
+        contract.mint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        }),
+        truffleAssert.ErrorType.REVERT,
+        'Can only mint 3 tokens at address'
+      )
+    })
+
+    it('when price is not corrent must be fails', async () => {
+      await truffleAssert.fails(
+        contract.mint(4, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.005'),
+        })
+      )
+    })
+
+    it('when bad sign must be fails', async () => {
+      await truffleAssert.fails(
+        contract.mint(1, unvalidSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+    })
   })
 
   describe('presaleMint', () => {
@@ -172,12 +320,190 @@ contract('HappyPlanetClub', () => {
       ).signature
     })
 
-    it('when valid sign must be minted', async () => {})
-  })
+    it('when valid sign must be minted', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
 
-  describe('airdrop', () => {
-    it('must be minted', async () => {
-      await contract.airdrop(holderOne.address, 1)
+      assert.equal(await contract.balanceOf(holderOne.address), 1)
+    })
+
+    it('when valid sign must be minted 2', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 2)
+    })
+
+    it('when valid sign must be minted 3', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(3, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 3)
+    })
+
+    it('when valid sign must be minted 4', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(4, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 4)
+    })
+
+    it('when valid sign must be minted 1+1', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 2)
+    })
+
+    it('when valid sign must be minted 1+2', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 3)
+    })
+
+    it('when valid sign must be minted 1+3', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(3, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 4)
+    })
+
+    it('when valid sign must be minted 2+1', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 3)
+    })
+
+    it('when valid sign must be minted 2+2', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 4)
+    })
+
+    it('when valid sign must be minted 3+1', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(3, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      assert.equal(await contract.balanceOf(holderOne.address), 4)
+    })
+
+    it('when bad sign must be fails', async () => {
+      await truffleAssert.fails(
+        contract.presaleMint(1, unvalidSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+    })
+
+    it('when token owners count > 4 must be fails', async () => {
+      await truffleAssert.passes(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0'),
+        })
+      )
+
+      await truffleAssert.passes(
+        contract.presaleMint(1, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.009'),
+        })
+      )
+
+      await truffleAssert.fails(
+        contract.presaleMint(2, validSign, {
+          from: holderOne.address,
+          value: web3.utils.toWei('0.018'),
+        }),
+        truffleAssert.ErrorType.REVERT,
+        'Can only mint 4 tokens at address'
+      )
     })
   })
 })
