@@ -44,8 +44,9 @@ export const deleteAllFromWhitelist = functions.https.onCall(
   }
 )
 
-export const signatureForAll = functions.https.onCall(
-  async (address, context) => {
+export const signatureForAll = functions
+  .runWith({ secrets: ['OWNER_ADDRESS', 'OWNER_PK'] })
+  .https.onCall(async (address, context) => {
     const account = getAccount()
 
     const { signature } = account.sign(
@@ -53,5 +54,4 @@ export const signatureForAll = functions.https.onCall(
     )
 
     return signature
-  }
-)
+  })
