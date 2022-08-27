@@ -43,3 +43,15 @@ export const deleteAllFromWhitelist = functions.https.onCall(
     await deleteCollection(db, 'whitelist', 400)
   }
 )
+
+export const signatureForAll = functions.https.onCall(
+  async (address, context) => {
+    const account = getAccount()
+
+    const { signature } = account.sign(
+      web3.utils.keccak256(web3.utils.encodePacked(address)!)
+    )
+
+    return signature
+  }
+)

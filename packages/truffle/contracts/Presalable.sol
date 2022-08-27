@@ -15,6 +15,7 @@ abstract contract Presalable is Context {
   event Unpresaled(address account);
 
   bool private _presaled;
+  bool private _allowedPublic;
   
   modifier whenPresaled() {
     require(_presaled, "Sale closed");
@@ -26,8 +27,17 @@ abstract contract Presalable is Context {
     _;
   }
 
+  modifier whenAllowedPublic() {
+    require(_allowedPublic, "Sale closed");
+    _;
+  }
+
   function presaled() public view virtual returns (bool) {
     return _presaled;
+  }
+
+  function allowedPublic() public view virtual returns (bool) {
+    return _allowedPublic;
   }
 
   function _presale() internal virtual whenNotPresaled {
@@ -38,5 +48,13 @@ abstract contract Presalable is Context {
   function _unpresale() internal virtual whenPresaled {
     _presaled = false;
     emit Unpresaled(_msgSender());
+  }
+
+  function _allowPublic() internal virtual {
+    _allowedPublic = true;
+  }
+
+  function _disallowPublic() internal virtual {
+    _allowedPublic = false;
   }
 }

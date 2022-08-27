@@ -1175,7 +1175,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-08-20T22:39:34.535Z",
+  "updatedAt": "2022-08-27T13:11:40.365Z",
   "devdoc": {
     "details": "Interface of ERC721AQueryable.",
     "kind": "dev",

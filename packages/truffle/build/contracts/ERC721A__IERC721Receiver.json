@@ -22085,7 +22085,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-08-20T22:39:34.525Z",
+  "updatedAt": "2022-08-27T13:11:40.358Z",
   "devdoc": {
     "details": "Interface of ERC721 token receiver.",
     "kind": "dev",

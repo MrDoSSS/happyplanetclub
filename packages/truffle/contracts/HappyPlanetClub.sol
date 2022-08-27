@@ -16,12 +16,12 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
 
   string public baseTokenURI;
 
-  uint256 public price = 0.008 ether;
-  uint256 public presalePrice = 0.005 ether;
-  uint256 public maxTotalSupply = 4444;
+  uint256 public price = 0.009 ether;
+  uint256 public presalePrice = 0.006 ether;
+  uint256 public maxTotalSupply = 3000;
 
-  address t1 = 0xFe5361E534aA22E9052b50605b8F932Fc42a2F2f;
-  address t2 = 0xFe5361E534aA22E9052b50605b8F932Fc42a2F2f;
+  address t1 = 0x402351069CFF2F0324A147eC0a138a1C21491591;
+  address t2 = 0xe6Fa2a32A99ad27Cd21A9E740405DBA7e0C6e3f3;
 
   constructor(string memory _baseTokenURI) ERC721A("Happy Planet Club", "HPC")  {
     setBaseURI(_baseTokenURI);
@@ -40,7 +40,7 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
     return _numberMinted(owner);
   }
 
-  function mint(uint256 _amount, bytes memory _signature) public payable whenNotPaused {
+  function mint(uint256 _amount, bytes memory _signature) public payable whenAllowedPublic whenNotPaused {
     address signer = _recoverSigner(msg.sender, _signature);
     
     require(signer == owner(), "Not authorized to mint");
@@ -71,6 +71,8 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
   }
 
   function airdrop(address _owner, uint256 _amount) public onlyOwner {
+    require(_totalMinted() + _amount <= maxTotalSupply, "Exceeds maximum supply");
+
     _safeMint(_owner, _amount);
   }
 
@@ -115,6 +117,14 @@ contract HappyPlanetClub is ERC721AQueryable, Ownable, Pausable, Presalable, Ree
 
   function unpresale() public onlyOwner {
     _unpresale();
+  }
+
+  function allowPublic() public onlyOwner {
+    _allowPublic();
+  }
+
+  function disallowPublic() public onlyOwner {
+    _disallowPublic();
   }
 
   function _recoverSigner(address _wallet, bytes memory _signature) private pure returns (address){
