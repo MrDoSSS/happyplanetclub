@@ -124,40 +124,15 @@ const mint = async () => {
               <li>Public: 3:20PM EST</li>
               <li>1 FREE + 2 for 0.009 ETH</li>
             </ul>
-            <div class="mb-1 mint-amount-container d-inline-block">
-              <select class="mint-amount" v-model="mintAmount">
-                <option value="" disabled selected>How many?</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-              <i class="bi bi-caret-down-fill"></i>
-            </div>
             <div>
-              <button
+              <a
+                href="https://opensea.io/collection/happy-planet-club-genesis"
                 class="btn btn-primary mb-1"
-                @click="mint"
-                :disabled="loading"
+                target="_blank"
+                >Buy on OS</a
               >
-                Mint
-              </button>
-              <div class="text-warning" v-if="loading">Minting...</div>
-              <div class="fs-6 text text-danger" v-else>
-                <div v-if="status === 'presale-error'">
-                  Mint now available only for whitelist members!
-                </div>
-                <div v-else-if="status === 'amount-error'">
-                  Exceeds maximum tokens at address
-                </div>
-                <div v-else-if="status === 'error'">
-                  Ops, something went wrong. Try&nbsp;again.
-                </div>
-                <div class="text-success" v-else-if="status === 'success'">
-                  Mint done! Check OpenSea.
-                </div>
-              </div>
             </div>
+            <div class="text-success">Sold out</div>
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-7">
