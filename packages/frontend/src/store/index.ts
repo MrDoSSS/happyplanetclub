@@ -2,6 +2,7 @@ import { createPinia } from 'pinia'
 import { useWalletStore } from './wallet'
 import { setInbrowserProvider } from '@/ethereum'
 import { useWhitelistStore } from './whitelist'
+import { useContractStore } from './contract'
 import { initWeb3 } from '@/web3'
 
 export const pinia = createPinia()
@@ -25,7 +26,9 @@ export const initStore: {
     if (walletStore.connected) {
       initWeb3(walletStore.currentAccount)
       const whitelistStore = useWhitelistStore()
+      const contractStore = useContractStore()
       await whitelistStore.find(walletStore.currentAccount)
+      await contractStore.init(walletStore.currentAccount)
     } else {
       walletStore.disconnect()
     }
